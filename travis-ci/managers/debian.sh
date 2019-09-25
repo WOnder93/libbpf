@@ -52,6 +52,8 @@ for phase in "${PHASES[@]}"; do
             docker_exec mkdir build
             docker_exec ${CC:-cc} --version
             docker_exec make CFLAGS="${CFLAGS}" -C ./src -B OBJDIR=../build
+            info "ldd build/libbpf.so:"
+            docker_exec ldd build/libbpf.so
             if ! docker_exec ldd build/libbpf.so | grep libelf; then
                 error "No reference to libelf.so in libbpf.so!"
                 exit 1
@@ -70,6 +72,8 @@ for phase in "${PHASES[@]}"; do
             docker_exec mkdir build
             docker_exec ${CC:-cc} --version
             docker_exec make CFLAGS="${CFLAGS}" -C ./src -B OBJDIR=../build
+            info "ldd build/libbpf.so:"
+            docker_exec ldd build/libbpf.so
             if ! docker_exec ldd build/libbpf.so | grep libelf; then
                 error "No reference to libelf.so in libbpf.so!"
                 exit 1
