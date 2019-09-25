@@ -14,4 +14,5 @@ CFLAGS="-g -O2 -Werror -Wall -fsanitize=address,undefined"
 mkdir build
 cc --version
 make CFLAGS="${CFLAGS}" -C ./src -B OBJDIR=../build
+ldd build/libbpf.so | grep libelf
 rm -rf build
